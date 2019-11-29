@@ -55,6 +55,17 @@ def update_book(book_id):
     # Redirecting to home page
     return redirect(url_for("get_books"))
 
+# Remove selected book from database with all of it reviews
+@app.route("/delete_book/<book_id>")
+def delete_book(book_id):
+    # Find current book in database
+    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    # Remove all reviews of this book
+    mongo.db.reviews.remove({"book_title": book["title"]})
+    # Remove current from database
+    mongo.db.books.remove({"_id": ObjectId(book_id)})
+    return redirect(url_for("get_books"))
+
 # Displaying reviews for selected book
 @app.route("/get_reviews/<book_title>")
 def get_reviews(book_title):
