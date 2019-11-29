@@ -34,6 +34,13 @@ def insert_book():
     # Redirecting to home page
     return redirect(url_for("get_books"))
 
+# Rendering for for editing record of selected book
+@app.route("/edit_book/<book_id>")
+def edit_book(book_id):
+    # Find current book in database by unique id
+    current_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    return render_template("edit_book.html", book=current_book)
+
 
 # Deploying application on a server
 if __name__ == "__main__":
