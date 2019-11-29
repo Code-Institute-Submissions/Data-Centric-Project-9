@@ -55,6 +55,13 @@ def update_book(book_id):
     # Redirecting to home page
     return redirect(url_for("get_books"))
 
+# Displaying reviews for selected book
+@app.route("/get_reviews/<book_title>")
+def get_reviews(book_title):
+    # Getting all reviews for current book
+    current_reviews = mongo.db.reviews.find({"book_title": book_title})
+    return render_template("get_reviews.html", reviews=current_reviews)
+
 
 # Deploying application on a server
 if __name__ == "__main__":

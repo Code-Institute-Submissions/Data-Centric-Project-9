@@ -10,6 +10,7 @@
             </div>
             <div class="card-action">
                 <a href="{{url_for('edit_book', book_id=book._id)}}">Edit</a>
+                <a href="{{url_for('get_reviews', book_title=book.title)}}">Review</a>
             </div>
         </div>
     </div>
