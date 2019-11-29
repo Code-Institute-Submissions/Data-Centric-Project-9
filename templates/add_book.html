@@ -1,0 +1,23 @@
+{% extends "base.html"%} {% block content %}
+
+<div class="row">
+    <form action="" method="POST" class="col s12 m6">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">book</i>
+                <input id="title" name="title" type="text" class="validate" required>
+                <label for="title">Book Title</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="author" name="author" type="text" class="validate" required>
+                <label for="author">Book Author</label>
+            </div>
+        </div>
+        <button class="btn" type="submit">Add Book</button>
+    </form>
+</div>
+
+{% endblock %}

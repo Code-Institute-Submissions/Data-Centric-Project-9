@@ -13,11 +13,16 @@ app.config["MONGO_URI"] = "mongodb+srv://Yaoma:pfc0a7aNQiF22Lek@cluster0-xbf5e.m
 # Creating an database instance
 mongo = PyMongo(app)
 
-# Test
+# Fetching all books from database and rendering them to template
 @app.route("/")
 @app.route("/get_books")
 def get_books():
-    return render_template("base.html", books=mongo.db.books.find())
+    return render_template("get_books.html", books=mongo.db.books.find())
+
+# Rendering form for adding new book to database
+@app.route("/add_book")
+def add_book():
+    return render_template("add_book.html")
 
 
 # Deploying application on a server
