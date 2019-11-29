@@ -68,6 +68,20 @@ def add_review(book_title):
     # Passing through book title for future database injection
     return render_template("add_review.html", title=book_title)
 
+# Injecting database with new review
+@app.route("/insert_review/<book_title>", methods=["POST"])
+def insert_review(book_title):
+    # Getting list of reviews
+    reviews = mongo.db.reviews
+    # Creating new review with selected book title for future sorting
+    new_review = {"book_title": book_title}
+    # Adding rest of fields from form
+    new_review.update(request.form.to_dict())
+    # Adding new review to database
+    reviews.insert_one(new_review)
+    # Redirecting back to current book reviews
+    return redirect(url_for("get_reviews", book_title=book_title))
+
 
 # Deploying application on a server
 if __name__ == "__main__":
