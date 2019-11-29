@@ -73,6 +73,11 @@ def get_reviews(book_title):
     current_reviews = mongo.db.reviews.find({"book_title": book_title})
     return render_template("get_reviews.html", reviews=current_reviews, title=book_title)
 
+# Displaying all reviews
+@app.route("/get_all_reviews")
+def get_all_reviews():
+    return render_template("get_all_reviews.html", reviews=mongo.db.reviews.find())
+
 # Creating new review for selected book
 @app.route("/add_review/<book_title>")
 def add_review(book_title):

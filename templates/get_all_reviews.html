@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+{% block title %}
+<a href="#!" class="brand-logo">Reviews</a>
+{% endblock %}
+{% block content %}
+
+{% for review in reviews %}
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{review.author}}</span>
+                <p>{{review.book_title}}</p>
+                <p>{{review.review}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
