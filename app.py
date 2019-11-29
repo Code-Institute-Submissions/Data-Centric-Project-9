@@ -24,6 +24,16 @@ def get_books():
 def add_book():
     return render_template("add_book.html")
 
+# Adding new book to database
+@app.route("/insert_book", methods=["POST"])
+def insert_book():
+    # Getting list of books from database
+    books = mongo.db.books
+    # Converting data from form into dictionary and adding new book to database
+    books.insert_one(request.form.to_dict())
+    # Redirecting to home page
+    return redirect(url_for("get_books"))
+
 
 # Deploying application on a server
 if __name__ == "__main__":
