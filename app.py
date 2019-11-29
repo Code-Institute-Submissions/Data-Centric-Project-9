@@ -41,6 +41,20 @@ def edit_book(book_id):
     current_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     return render_template("edit_book.html", book=current_book)
 
+# Updating existing record of a book
+@app.route("/update_book/<book_id>", methods=["POST"])
+def update_book(book_id):
+    # Getting list of books from database
+    books = mongo.db.books
+    # Finding current book in databse by unique id and updating it fields from form
+    books.update({"_id": ObjectId(book_id)},
+                 {
+        "title": request.form.get("title"),
+        "author": request.form.get("author")
+    })
+    # Redirecting to home page
+    return redirect(url_for("get_books"))
+
 
 # Deploying application on a server
 if __name__ == "__main__":

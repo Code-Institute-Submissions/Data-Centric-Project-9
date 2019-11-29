@@ -9,7 +9,7 @@
                 <p>{{book.author}}</p>
             </div>
             <div class="card-action">
-                <a href="">Edit</a>
+                <a href="{{url_for('edit_book', book_id=book._id)}}">Edit</a>
             </div>
         </div>
     </div>
